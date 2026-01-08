@@ -1,0 +1,1277 @@
+:root {
+    /* Colors */
+    --gold-highlight: #FFD37A;
+    --gold-shadow: #8A5B12;
+    --cabinet-red: #7C1D1B;
+    --cabinet-red-highlight: #B2342C;
+    --cabinet-shadow: #3A0C0B;
+    --reel-bg: #1A1A1A;
+    --tile-bg: #F3E6C8;
+    --tile-border: #C9A66B;
+    --spin-btn-red: #C62828;
+    --spin-btn-highlight: #FF5A4E;
+    --text-dark: #1A1A1A;
+    --page-bg: #EFE6D8;
+
+    /* Dimensions */
+    --cabinet-width: 800px;
+    --cabinet-height: 600px;
+    --reel-height: 220px;
+    --bulb-size: 10px;
+
+    /* Fonts & Misc */
+    --font-display: "Cinzel", serif;
+    --font-body: "Sora", sans-serif;
+    --cell-height: 55px;
+    --cell-font-size: 1rem;
+    --cell-font-size-min: 0.7;
+    --max-display-chars: 12;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-image: url("assets/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.14) 70%, rgba(0, 0, 0, 0.22) 100%);
+    pointer-events: none;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    position: relative;
+    z-index: 1;
+    padding: 16px 14px 20px;
+    overflow-x: hidden;
+}
+
+.top-ad {
+    width: min(920px, 100%);
+    height: 50px;
+    background: linear-gradient(180deg, #2f62b6 0%, #234a8a 100%);
+    color: #f7f1e7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 8px;
+    border: 2px solid #1a3f76;
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.25),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.content-row {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 720px) 300px;
+    grid-template-areas: "left main right";
+    gap: 16px;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+}
+
+.side-ad {
+    width: 300px;
+    height: 600px;
+    background: linear-gradient(135deg, #eeeeee 0%, #d3d3d3 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #7b7b7b;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #b9b1a6;
+    border-radius: 10px;
+    position: sticky;
+    top: 24px;
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    z-index: 1;
+}
+
+.side-left {
+    grid-area: left;
+}
+
+.side-right {
+    grid-area: right;
+}
+
+.main-content {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    position: relative;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 5px;
+}
+
+.header h1 {
+    /* font-family: var(--font-display); */
+    font-size: 42px;
+    font-weight: 700;
+    color: #2b1d12;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.header p {
+    font-size: 18px;
+    color: #6f5b48;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0.75;
+}
+
+.input-section {
+    display: flex;
+    width: 100%;
+    max-width: 560px;
+    overflow: hidden;
+}
+
+.input-section input {
+    width: 520px;
+    height: 44px;
+    border-radius: 6px;
+    padding: 0 12px;
+    border: 1px solid #c0b0a0;
+    font-size: 16px;
+    outline: none;
+    background: #fdfdfd;
+    color: #3b2718;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.input-section input::placeholder {
+    color: #9a7c56;
+}
+
+.input-section .add-btn {
+    width: 88px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #c73925 0%, #8b1a12 100%);
+    color: #fff7e3;
+    border: none;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow:
+        inset 0 3px 6px rgba(255, 255, 255, 0.25),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.input-section .add-btn:hover {
+    background: linear-gradient(180deg, #d8452d 0%, #9a1f15 100%);
+}
+
+.input-actions {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.clear-btn {
+    padding: 8px 14px;
+    background: linear-gradient(180deg, #5b4f4f 0%, #2e2626 100%);
+    color: #f6eee0;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background: linear-gradient(180deg, #716060 0%, #3a2f2f 100%);
+}
+
+.name-count {
+    font-size: 0.85rem;
+    color: #6f5738;
+    letter-spacing: 0.05em;
+}
+
+.status {
+    width: 100%;
+    max-width: 560px;
+    min-height: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #6f5738;
+}
+
+.status[data-tone="error"] {
+    color: #b00020;
+}
+
+.status[data-tone="success"] {
+    color: #1f6f3a;
+}
+
+.status[data-tone="info"] {
+    color: #7a5a32;
+}
+
+/* =========================================
+   SLOT MACHINE CABINET
+   ========================================= */
+
+.machine {
+    position: relative;
+    width: var(--cabinet-width);
+    height: var(--cabinet-height);
+    background-image: url("assets/slot_machine.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 3;
+    border-radius: 0;
+    /* Override any defaults */
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.machine::before {
+    display: none;
+}
+
+/* =========================================
+   TOP ARCH WITH MARQUEE BULBS
+   ========================================= */
+
+.arch {
+    position: absolute;
+    top: 5px;
+    /* Aligned to top of machine image */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 680px;
+    /* Wider to match machine width roughly */
+    height: 100px;
+    z-index: 5;
+    background: transparent;
+    /* Removed red gradient */
+    border: none;
+    /* Removed border */
+    box-shadow: none;
+    pointer-events: none;
+}
+
+/* Hide duplicate text if it's in the background image */
+.arch-text {
+    display: none;
+}
+
+/* Marquee bulbs - larger and more realistic */
+.lights {
+    position: absolute;
+    top: 8px;
+    left: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    z-index: 6;
+}
+
+.light {
+    width: var(--bulb-size);
+    height: var(--bulb-size);
+    background: radial-gradient(circle at 30% 30%, #fff 0%, var(--gold-highlight) 60%, var(--gold-shadow) 100%);
+    border-radius: 50%;
+    border: 1px solid var(--gold-shadow);
+    box-shadow: 0 0 4px var(--gold-highlight);
+    animation: bulbPulse 1.6s infinite ease-in-out;
+}
+
+/* Staggered bulb animation */
+.light:nth-child(odd) {
+    animation-delay: 0s;
+}
+
+.light:nth-child(even) {
+    animation-delay: 0.8s;
+}
+
+@keyframes bulbPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        box-shadow: 0 0 2px var(--gold-shadow);
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--gold-highlight), 0 0 15px rgba(255, 211, 122, 0.6);
+    }
+}
+
+.arch-text {
+    text-align: center;
+    color: #ffe2a1;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.1;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+    font-family: var(--font-display);
+}
+
+.arch-text .line1 {
+    font-size: 1.2rem;
+    display: block;
+    letter-spacing: 0.15em;
+}
+
+.arch-text .line2 {
+    font-size: 1.7rem;
+    display: block;
+    color: #ffffff;
+    font-style: italic;
+    letter-spacing: 0.1em;
+}
+
+/* =========================================
+   REELS CONTAINER - RECESSED WINDOW
+   ========================================= */
+
+/* =========================================
+   REELS CONTAINER
+   ========================================= */
+
+.reels-container {
+    position: absolute;
+    /* Adjusted coordinates for standard slot machine framing */
+    top: 29.5%;
+    left: 17%;
+    width: 66.5%;
+    height: 33%;
+
+    background: #000;
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.reels-container::before,
+.reels-container::after {
+    display: none;
+}
+
+/* Payline indicator line - hiding as it might not fit the image style */
+.payline-indicator {
+    display: none;
+}
+
+
+@keyframes paylineGlow {
+
+    0%,
+    100% {
+        box-shadow:
+            inset 0 0 25px rgba(255, 215, 0, 0.5),
+            0 0 20px rgba(255, 215, 0, 0.6),
+            0 0 40px rgba(255, 180, 0, 0.3);
+    }
+
+    50% {
+        box-shadow:
+            inset 0 0 35px rgba(255, 225, 100, 0.7),
+            0 0 30px rgba(255, 215, 0, 0.8),
+            0 0 60px rgba(255, 200, 50, 0.5);
+    }
+}
+
+/* Payline arrows - hiding */
+.payline-arrow {
+    display: none;
+}
+
+
+.payline-arrow.left {
+    left: -20px;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 16px solid #ff2a2a;
+}
+
+.payline-arrow.right {
+    right: -20px;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 16px solid #ff2a2a;
+}
+
+.reels {
+    display: flex;
+    gap: 1.5%;
+    /* Spacing between reels */
+    width: 100%;
+    height: 100%;
+    /* Fill container */
+    overflow: hidden;
+    position: relative;
+    perspective: 600px;
+    transform-style: preserve-3d;
+}
+
+.reel {
+    flex: 1;
+    background: radial-gradient(ellipse at center, #fff8ea 0%, #f2e1c8 55%, #e0c7a1 100%);
+    border-radius: 4px;
+    /* Slight radius */
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Inner shadow for depth */
+    transform-style: preserve-3d;
+    transition: all 0.4s ease;
+}
+
+/* Winning reel gold glow effect */
+.reel.winning-reel {
+    border-color: #ffd700;
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.9),
+        0 0 40px rgba(255, 200, 50, 0.7),
+        0 0 60px rgba(255, 180, 0, 0.5),
+        0 0 80px rgba(255, 160, 0, 0.3),
+        inset 0 0 30px rgba(255, 215, 0, 0.3);
+    animation: winningReelPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes winningReelPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px rgba(255, 215, 0, 0.9),
+            0 0 40px rgba(255, 200, 50, 0.7),
+            0 0 60px rgba(255, 180, 0, 0.5),
+            0 0 80px rgba(255, 160, 0, 0.3),
+            inset 0 0 30px rgba(255, 215, 0, 0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px rgba(255, 215, 0, 1),
+            0 0 55px rgba(255, 200, 50, 0.85),
+            0 0 80px rgba(255, 180, 0, 0.65),
+            0 0 100px rgba(255, 160, 0, 0.4),
+            inset 0 0 40px rgba(255, 215, 0, 0.4);
+    }
+}
+
+.reel.spinning {
+    box-shadow:
+        inset 0 15px 30px rgba(0, 0, 0, 0.45),
+        inset 0 -15px 30px rgba(0, 0, 0, 0.45),
+        0 0 15px rgba(255, 215, 0, 0.2);
+}
+
+/* Curved glass effect on each reel */
+.reel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg,
+            rgba(0, 0, 0, 0.5) 0%,
+            rgba(0, 0, 0, 0.15) 15%,
+            transparent 30%,
+            transparent 70%,
+            rgba(0, 0, 0, 0.15) 85%,
+            rgba(0, 0, 0, 0.5) 100%),
+        linear-gradient(90deg,
+            rgba(0, 0, 0, 0.3) 0%,
+            transparent 15%,
+            transparent 85%,
+            rgba(0, 0, 0, 0.3) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Center row highlight */
+.reel::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: var(--cell-height);
+    transform: translateY(-50%);
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.25) 50%,
+            rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.reel-strip {
+    position: absolute;
+    width: 100%;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.reel.spinning .reel-strip {
+    will-change: transform;
+}
+
+.reel.spinning .name-cell {
+    opacity: 0.9;
+    transform: translateZ(0);
+}
+
+.name-cell {
+    /* Adjusted to match new sizing or make flexible */
+    width: 100%;
+    height: var(--cell-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Use reelGold.png for default cell background */
+    background-image: url("assets/reelGold.png");
+    background-size: 100% 100%;
+    background-color: transparent;
+    /* Fallback */
+    border: none;
+    border-radius: 4px;
+    padding: 0px;
+    color: var(--text-dark);
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: none;
+    /* Remove inner shadow if image has it */
+    text-transform: capitalize;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    text-align: center;
+    max-width: 100%;
+    box-sizing: border-box;
+    cursor: default;
+    user-select: none;
+    line-height: 1.1;
+}
+
+.name-text {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: inherit;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.name-text.multiline {
+    white-space: pre-line;
+    word-break: break-word;
+}
+
+/* Truncated name indicator */
+.name-cell.truncated {
+    cursor: pointer;
+    position: relative;
+}
+
+.name-cell.truncated::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 6px;
+    height: 6px;
+    background: rgba(212, 175, 55, 0.8);
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.name-cell.truncated:hover::after {
+    opacity: 1;
+    animation: pulseIndicator 1s infinite;
+}
+
+@keyframes pulseIndicator {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+/* Center row styling (non-winner) */
+.name-cell.center-row {
+    background: linear-gradient(180deg, #e8e4df 0%, #f5f2ed 50%, #e8e4df 100%);
+    font-weight: 800;
+}
+
+/* Winner row styling - glows strongest */
+/* Winner row styling - uses reelRed.png */
+.name-cell.winner-row {
+    background-image: url("assets/reelRed.png");
+    background-size: 100% 100%;
+    color: #fff;
+    font-weight: 800;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+    border: none;
+    box-shadow:
+        0 0 20px rgba(255, 215, 0, 0.6);
+    animation: winnerCellPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes winnerCellPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            inset 0 0 20px rgba(255, 200, 100, 0.5),
+            0 0 20px rgba(255, 215, 0, 0.6);
+    }
+
+    50% {
+        box-shadow:
+            inset 0 0 30px rgba(255, 220, 120, 0.7),
+            0 0 30px rgba(255, 215, 0, 0.8);
+    }
+}
+
+/* =========================================
+   CONTROL PANEL
+   ========================================= */
+
+/* =========================================
+   CONTROL PANEL
+   ========================================= */
+
+.control-panel {
+    /* Hide the panel background, just use it as a container for interactions */
+    position: absolute;
+    top: 55%;
+    left: 20%;
+    width: 60%;
+    height: 20%;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    /* Ensure it sits above reels */
+    pointer-events: none;
+    /* Let clicks pass unless on buttons */
+}
+
+
+.indicator-lights {
+    display: none;
+}
+
+.indicator {
+    width: 11px;
+    height: 11px;
+    background: radial-gradient(circle at 35% 35%, #fff8a0 0%, #ffeb3b 60%, #ffa000 100%);
+    border-radius: 50%;
+    border: 2px solid #8b6914;
+    box-shadow:
+        0 0 8px #ffa000,
+        0 0 15px rgba(255, 160, 0, 0.5);
+    animation: indicatorBlink 1s infinite alternate;
+}
+
+@keyframes indicatorBlink {
+    0% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   GLOSSY SPIN BUTTON - 3D Effect
+   ========================================= */
+
+.spin-button {
+    pointer-events: auto;
+    width: 250px;
+    /* Restored original size */
+    height: 100px;
+    /* Restored original size */
+
+    background-image: url("assets/spinButton.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    /* Remove CSS button effects */
+    /* background: transparent; Removed to fix visibility */
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    display: block;
+    /* Changed back from flex */
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s, box-shadow 0.1s;
+
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 101;
+    /* Higher than control panel */
+}
+
+.spin-button:active {
+    transform: translateX(-50%) scale(0.95);
+}
+
+.spin-button::before {
+    display: none;
+}
+
+
+
+
+
+/* Pressed state */
+
+
+.spin-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(30%);
+}
+
+/* =========================================
+   WINNER DISPLAY
+   ========================================= */
+
+.winner-display {
+    position: absolute;
+    bottom: 10%;
+    /* Position on the lower bar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60px;
+    /* Fixed height for the text bar */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    /* Reset old styles */
+    /* Winner display positioning */
+    /* background: rgba(0, 0, 0, 0.85); */
+    /* border: 2px solid #ffd700; */
+    /* border-radius: 30px; */
+    /* box-shadow: 0 0 15px #ffd700; */
+    padding: 5px 20px;
+    margin: 0;
+}
+
+.winner-display .name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: var(--font-display);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    /* Improve contrast if needed on light bar */
+    /* If bar is light beige, use dark text? Screenshot showed white "Ready" on light bar... 
+       Wait, in uploaded_image_0 "Ready" is White with shadow on beige background. */
+}
+
+/* =========================================
+   BOTTOM AD
+   ========================================= */
+
+.bottom-ad {
+    width: min(970px, 100%);
+    height: 250px;
+    background: linear-gradient(135deg, #efefef 0%, #cfcfcf 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7b7b7b;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid #b0a9a0;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================
+   LEVER
+   ========================================= */
+
+.lever {
+    position: absolute;
+    top: 10%;
+    /* Start higher up near where the gear connects */
+    right: -100px;
+    /* Stick out to the right */
+    width: 100px;
+    height: 250px;
+    background: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 5;
+    /* Optional: Debug border to see hit area during dev */
+    /* border: 1px solid red; */
+}
+
+/* Hide compiled lever parts */
+.lever-base,
+.lever-arm,
+.lever-ball {
+    display: none;
+}
+
+/* If we want to animate the machine shaking or something on pull */
+.lever:active {
+    /* Maybe shift slightly */
+    transform: translateY(2px);
+}
+
+/* =========================================
+   BALLOONS
+   ========================================= */
+
+.balloon-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.balloon {
+    position: absolute;
+    bottom: -80px;
+    width: 32px;
+    height: 40px;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: inset -4px -6px 12px rgba(0, 0, 0, 0.2);
+    animation: floatUp 5.5s ease-in forwards;
+}
+
+.balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -36px;
+    left: 50%;
+    width: 2px;
+    height: 36px;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) scale(0.9);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-120vh) translateX(20px) scale(1.05);
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 1024px) {
+    .content-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "main"
+            "left"
+            "right";
+        gap: 24px;
+    }
+
+    .side-ad {
+        position: static;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        padding: 16px;
+    }
+
+    .page-wrapper {
+        padding: 18px 14px 24px;
+        border-radius: 14px;
+    }
+
+    .machine {
+        width: 100%;
+        /* margin-top: 44px; */
+        /* padding: 18px 14px 20px; */
+    }
+
+    .arch {
+        top: -48px;
+        height: 84px;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .reels-container {
+        margin-top: 40px;
+        padding: 12px;
+    }
+
+    .reels {
+        gap: 6px;
+    }
+
+    .control-panel {
+        margin-top: 16px;
+        padding: 16px;
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    .spin-button {
+        width: 148px;
+        height: 54px;
+        font-size: 1.4rem;
+    }
+
+    .winner-display .name {
+        font-size: 1.85rem;
+    }
+
+    .lever {
+        display: none !important;
+    }
+
+    .payline-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --cell-height: 36px;
+    }
+
+    body {
+        padding: 14px;
+    }
+
+    .page-wrapper {
+        padding: 14px 10px 20px;
+        border-radius: 12px;
+    }
+
+    .input-section {
+        flex-direction: row;
+        width: 100%;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .input-section input {
+        width: 100%;
+        margin: 0;
+    }
+
+    .input-section .add-btn {
+        width: auto;
+        min-width: 80px;
+        margin: 0;
+    }
+
+    .input-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .reels {
+        gap: 4px;
+    }
+
+    .name-cell {
+        font-size: 0.85rem;
+    }
+
+    .name-text {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.7rem;
+    line-height: 1;
+    text-align: center;
+}
+
+    .machine {
+        margin-top: 0;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 800 / 600;
+        background-size: 100% 100%;
+        box-shadow: none; /* Remove box shadow as it looks weird on the bounding box */
+    }
+
+    .reels-container {
+        margin-top: 0; /* Let absolute positioning handle it */
+        padding: 0;
+        /* Ensure it scales with the machine */
+    }
+
+    .control-panel {
+        margin-top: 14px;
+        padding: 12px;
+    }
+
+    .header h1 {
+        font-size: 1.2rem;
+    }
+
+    .spin-button {
+        width: 126px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+
+    .winner-display {
+    position: absolute;
+    bottom: -2%;
+    /* Position on the lower bar */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 60px;
+    /* Fixed height for the text bar */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    /* Reset old styles */
+    /* Winner display positioning */
+    /* background: rgba(0, 0, 0, 0.85); */
+    /* border: 2px solid #ffd700; */
+    /* border-radius: 30px; */
+    /* box-shadow: 0 0 15px #ffd700; */
+    padding: 5px 20px;
+    margin: 0;
+}
+
+    .winner-display .name {
+        font-size: 1.1rem;
+    }
+
+    .arch {
+        top: -40px;
+        height: 68px;
+    }
+
+    .arch-text .line1 {
+        font-size: 0.9rem;
+    }
+
+    .arch-text .line2 {
+        font-size: 1.15rem;
+    }
+
+    .light {
+        width: 9px;
+        height: 9px;
+    }
+
+    .indicator {
+        width: 9px;
+        height: 9px;
+    }
+}
+
+/* =========================================
+   NAME TOOLTIP (Mobile Full Name Display)
+   ========================================= */
+
+.name-tooltip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 20px 32px;
+    border-radius: 16px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    text-transform: capitalize;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(212, 175, 55, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 2px solid #d4af37;
+    text-align: center;
+    max-width: 90vw;
+    word-wrap: break-word;
+}
+
+.name-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.name-tooltip::before {
+    content: 'Full Name';
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #d4af37;
+    margin-bottom: 8px;
+    font-family: var(--font-body);
+}
+
+/* Backdrop overlay for tooltip */
+.tooltip-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.tooltip-backdrop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.name-measure {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--cell-font-size);
+    text-transform: capitalize;
+}

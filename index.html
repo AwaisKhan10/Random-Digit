@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Machine Name Picker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@400;600;700;800;900&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        
+        <!-- Top Ad -->
+        <div class="top-ad">
+            920x50 ADVERTISEMENT
+        </div>
+
+        <!-- Main Content Row -->
+        <div class="content-row">
+            
+            <!-- Left Ad -->
+            <div class="side-ad side-left">
+                300x600<br>Ad<br><small style="font-size:11px;margin-top:10px;display:block;">ADVERTISEMENT</small>
+            </div>
+
+            <!-- Center Content -->
+            <div class="main-content">
+                
+                <!-- Header -->
+                <div class="header">
+                    <h1>Slot Machine Name Picker</h1>
+                    <p>Free • No signup • Random</p>
+                </div>
+
+                <!-- Input -->
+                <div class="input-section">
+                    <input type="text" id="name-input" placeholder="Add names here (comma separated)">
+                    <button id="btn-add" class="add-btn">Add</button>
+                </div>
+                <!-- <div class="input-actions">
+                    <button id="btn-clear" class="clear-btn">Clear</button>
+                    <div class="name-count" id="name-count">0 / 40 names</div>
+                </div> -->
+                <!-- <div class="status" id="status" role="status" aria-live="polite"></div> -->
+
+                <!-- Slot Machine -->
+                <div class="machine">
+                    
+                    <!-- Top Arch -->
+                    <div class="arch">
+                        <!-- <div class="lights">
+                            <span class="light"></span>
+                            <span class="light"></span>
+                            <span class="light"></span>
+                            <span class="light"></span>
+                            <span class="light"></span>
+                            <span class="light"></span>
+                            <span class="light"></span>
+                        </div> -->
+                        <div class="arch-text">
+                            <span class="line1">Slot Machine</span>
+                            <span class="line2">Name Picker</span>
+                        </div>
+                    </div>
+
+                    <!-- Reels -->
+                    <div class="reels-container">
+                        <!-- Payline indicators -->
+                        <div class="payline-indicator"></div>
+                        <div class="payline-arrow left"></div>
+                        <div class="payline-arrow right"></div>
+                        
+                        <div class="reels">
+                            <div class="reel"><div class="reel-strip" id="reel-1"></div></div>
+                            <div class="reel"><div class="reel-strip" id="reel-2"></div></div>
+                            <div class="reel"><div class="reel-strip" id="reel-3"></div></div>
+                            <div class="reel"><div class="reel-strip" id="reel-4"></div></div>
+                            <div class="reel"><div class="reel-strip" id="reel-5"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Control Panel -->
+                    <div class="control-panel">
+                        <div class="indicator-lights">
+                            <span class="indicator"></span>
+                            <span class="indicator"></span>
+                            <span class="indicator"></span>
+                        </div>
+                        
+                        <button class="spin-button" id="btn-spin"></button>
+                        
+                        <div class="indicator-lights">
+                            <span class="indicator"></span>
+                            <span class="indicator"></span>
+                            <span class="indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- Winner Display -->
+                    <div class="winner-display">
+                        <!-- <div class="label">Winner</div> -->
+                        <div class="name" id="winner-text">Ready</div>
+                    </div>
+
+                    <!-- Lever -->
+                    <div class="lever" id="lever">
+                        <div class="lever-base"></div>
+                        <div class="lever-arm">
+                            <div class="lever-ball"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Right Ad -->
+            <div class="side-ad side-right">
+                300x600<br>Ad<br><small style="font-size:11px;margin-top:10px;display:block;">ADVERTISEMENT</small>
+            </div>
+
+        </div>
+
+        <!-- Bottom Ad -->
+        <!-- <div class="bottom-ad">
+            970x250 ADVERTISEMENT
+        </div> -->
+
+    </div>
+
+    <div class="balloon-layer" id="balloon-layer" aria-hidden="true"></div>
+    
+    <!-- Name Tooltip for displaying full names -->
+    <div class="tooltip-backdrop" id="tooltip-backdrop" aria-hidden="true"></div>
+    <div class="name-tooltip" id="name-tooltip" aria-hidden="true" role="tooltip"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
